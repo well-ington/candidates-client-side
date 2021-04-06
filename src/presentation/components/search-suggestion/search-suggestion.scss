@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: hsl(255, 50%, 95%);
+    
+}
+
+.item {
+    font-size: 1.4rem;
+    color: hsl(255, 50%, 25%);
+    margin: 0.2rem;    
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    transition: 64ms;
+}
+
+.itemActive {
+    background-color: hsl(255, 50%, 50%);
+    color: hsl(255, 50%, 95%);
+    font-weight: bold;    
+}
