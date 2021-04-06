@@ -1,12 +1,12 @@
 import React from 'react';
-import Button from '../button/button';
+import { Button } from '..';
 
 type TfilterButton = {
     filter: any;
     setFilter: (e: any) => void;
 }
 
-const FilterButton: React.FC<TfilterButton> = ({ filter, setFilter }) => {
+export const FilterButton: React.FC<TfilterButton> = ({ filter, setFilter }) => {
 
     const filteredItems = Object.keys(filter).filter(a => filter[a].length).map((key: string) => {
         if(Array.isArray(filter[key])) {
@@ -37,6 +37,4 @@ const FilterButton: React.FC<TfilterButton> = ({ filter, setFilter }) => {
     return <div>
        {filteredItems}
     </div>
-}
-
-export default FilterButton;
+};
