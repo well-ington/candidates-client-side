@@ -1,0 +1,39 @@
+.container {
+    background-color: hsl(255, 50%, 95%);
+    border-radius: 8px;
+    
+}
+
+.card {
+    flex-direction: row;
+    display: inline-block;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    width: 80vw;
+    padding: 12px;
+    margin: 6px;
+    & > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.title {
+    font-size: 1.4rem;
+
+}
+
+.sub, .highlight {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 0.6rem;
+}
+
+.highlight {
+    color: hsl(255, 70%, 40%);
+}
