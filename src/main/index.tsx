@@ -1,5 +1,4 @@
-import { App } from '@/presentation/components/app/app';
-import { Home } from '@/presentation/pages';
+import { App } from '@/presentation/components/';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
