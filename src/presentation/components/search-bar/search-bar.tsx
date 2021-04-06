@@ -1,11 +1,9 @@
+import React from 'react';
 import { SET_LOADING } from '@/data/store/actions/action-types';
 import { getServerQuery, getServerSuggestions } from '@/data/store/actions/actions';
 import { TremoteSuggestions } from '@/data/store/reducer/store';
-import React from 'react';
 import { connect } from 'react-redux';
-import Button from '../button/button';
-import FilterButton from '../filter-button/filter-button';
-import SearchSuggestion from '../search-suggestion/search-suggestion';
+import { Button, FilterButton, SearchSuggestion } from '..';
 import styles from './search-bar.scss';
 
 interface ISearchBar {

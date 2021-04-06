@@ -10,7 +10,7 @@ interface ISuggestion {
 
 
 
-const SearchSuggestion: React.FC<ISuggestion> = ({value, options, change}) => {
+export const SearchSuggestion: React.FC<ISuggestion> = ({value, options, change}) => {
     const [selected, setSelected] = React.useState(0);
 
 
@@ -109,6 +109,4 @@ const SearchSuggestion: React.FC<ISuggestion> = ({value, options, change}) => {
         })
     }
 </div>
-}
-
-export default SearchSuggestion;
+};
