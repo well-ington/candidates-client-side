@@ -9,3 +9,5 @@ export const SET_LOADING: string = 'SET-LOADING';
 export const UNSET_LOADING: string = 'UNSET-LOADING';
 
 export const REQUEST_ERROR: string = 'REQUEST-ERROR';
+
+export const CLEAR_ERROR: string = 'CLEAR-ERROR';
