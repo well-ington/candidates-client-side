@@ -5,8 +5,13 @@ interface ISuggestion {
     value: string;
     options: string[] | number[];
     change: (value: string) => void;
-    testid: string;
+    testid?: string;
 }
+
+const FilterQuery= (str: string) => str.toLowerCase().replace(/à|á|ã|â/g, "a")
+.replace(/è|ê|ê|é/g, "e").replace(/(ì|í|î)/g, "i").replace(/ò|ó|ô|ö/g, "o")
+.replace(/ù|ú|û|ü/g, "u")
+.replace(/ç/g, "c");
 
 export const SearchSuggestion: React.FC<ISuggestion> = ({value, options, change, testid = 'test-suggestions'}) => {
     const [selected, setSelected] = React.useState(0);
@@ -71,7 +76,7 @@ export const SearchSuggestion: React.FC<ISuggestion> = ({value, options, change,
         });
     } else {
         //string
-        filteredItems = optionsArray.filter(item => item.toLowerCase().search(value.toLowerCase()) !== -1);
+        filteredItems = optionsArray.filter((item: string) => FilterQuery(item).search(FilterQuery(value)) !== -1);
     }
     
     if((selected > filteredItems.length - 1 || selected >= 8)) {
@@ -116,9 +121,12 @@ export const SearchSuggestion: React.FC<ISuggestion> = ({value, options, change,
 
     
     return <div data-testid={testid} className={styles.container}>
-    {
+        {
+            filteredItems.length > 0 && value.length > 0 ? <p>clique ou selecione a opção e aperte Enter</p> : ''
+        }
+        {
         filteredItems.length > 0 && value.length > 0 && filteredItems.slice(0, filteredItems.length > 8 ? 8 : filteredItems.length).map((suggestion, id) => {
-            return <p data-testid={`suggestion-${id}`} key={`suggestion-id-${id}`} className={`${styles.item} ${selected === id ? styles.itemActive : ''}`}>{suggestion}</p>
+            return <p data-testid={`suggestion-${id}`} onClick={() => change(suggestion)} key={`suggestion-id-${id}`} className={`${styles.item} ${selected === id ? styles.itemActive : ''}`}>{suggestion}</p>
         })
     }
 </div>

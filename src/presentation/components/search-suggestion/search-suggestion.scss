@@ -1,7 +1,10 @@
 .container {
+    position: absolute;
+    z-index: 5;
     display: flex;
     flex-direction: column;
     background-color: hsl(255, 50%, 95%);
+    width: 100%;
     
 }
 
@@ -12,6 +15,12 @@
     padding-top: 0.6rem;
     padding-bottom: 0.6rem;
     transition: 64ms;
+    cursor: pointer;
+    transition: 128ms;
+    &:hover {
+        background-color: hsl(280, 50%, 50%);
+        color: hsl(280, 50%, 95%);
+    }
 }
 
 .itemActive {
@@ -19,3 +28,4 @@
     color: hsl(255, 50%, 95%);
     font-weight: bold;    
 }
+
