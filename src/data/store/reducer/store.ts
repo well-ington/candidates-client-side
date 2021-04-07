@@ -39,6 +39,7 @@ type TmainStateObject = {
    lastResult: TqueryObject;
    isLoading: boolean;
    error: string;
+   suggestionsLoaded: boolean;
 }
 
 const initialState: TmainStateObject = {
@@ -59,17 +60,19 @@ const initialState: TmainStateObject = {
         candidates: []
     },
     isLoading: false,
-    error: ''
+    error: '',
+    suggestionsLoaded: false
 }
 
 
 
 const reducer = (state = initialState, action): TmainStateObject => {
     switch(action.type) {
-        case GET_SUGGESTIONS:      
+        case GET_SUGGESTIONS:  
             return {
                 ...state,
-                suggestion: action.payload
+                suggestion: action.payload,
+                suggestionsLoaded: true
             }
         case GET_RESULTS:
             const newQueries = [...state.queries];

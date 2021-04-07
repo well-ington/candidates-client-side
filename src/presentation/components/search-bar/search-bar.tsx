@@ -5,7 +5,6 @@ import { TremoteSuggestions } from '@/data/store/reducer/store';
 import { connect } from 'react-redux';
 import { Button, FilterButton, SearchSuggestion } from '..';
 import styles from './search-bar.scss';
-import searchImage from '../../pages/home/icons/search.png';
 
 interface ISearchBar {
     options?: TremoteSuggestions;
@@ -13,9 +12,10 @@ interface ISearchBar {
     requestSuggestions: () => void;
     initializeQuery: (query: any) => void;
     setLoading: () => void;
+    loaded: boolean;
 }
 
-const SearchBar: React.FC<ISearchBar> = ({options, setQuery, requestSuggestions, initializeQuery, setLoading}) => {
+const SearchBar: React.FC<ISearchBar> = ({ options, setQuery, requestSuggestions, initializeQuery, setLoading, loaded }) => {
     const [firstLoad, setFirstLoad] = React.useState(true);
     if(firstLoad) {
         requestSuggestions();
@@ -77,7 +77,7 @@ const SearchBar: React.FC<ISearchBar> = ({options, setQuery, requestSuggestions,
         <div className={styles.infoWrapper}>
             <p className={styles.inputDisplay}>{selectorInputName[lazyKeySelector]}</p>
             <div className={styles.inputButtonWrapper}>
-                <input className={styles.textInput} data-testid="searchBar" value={value} type="text" onChange={(e: {target: {value: string}}) => setValue(e.target.value)} />
+                <input disabled={!loaded} placeholder={loaded ? '' : 'Carregando sugestões...'} className={`${styles.textInput} ${loaded ? '' : styles.loadingInput}`} data-testid="searchBar" value={value} type="text" onChange={(e: {target: {value: string}}) => setValue(e.target.value)} />
                 <div className={styles.buttonWrapper}>
                 <Button disabled={!isValidQuery} variant="proceed" action={() => {
                     setValue('');
@@ -87,7 +87,7 @@ const SearchBar: React.FC<ISearchBar> = ({options, setQuery, requestSuggestions,
                         initializeQuery(filterRequest);
                     }, 500);
                 }}>
-                    <img className={styles.searchIcon} src={searchImage} />
+                    <img className={styles.searchIcon} src={"/icons/search.png"} />
                 </Button>
 
                 </div>
@@ -101,7 +101,8 @@ const SearchBar: React.FC<ISearchBar> = ({options, setQuery, requestSuggestions,
 const mapStateToProps = (props) => {
     const store = props;
     return {
-        options: store.suggestion
+        options: store.suggestion,
+        loaded: store.suggestionsLoaded
     }
 }
 
@@ -115,4 +116,4 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-export default connect<{options: TremoteSuggestions}, {requestSuggestions: () => void, initializeQuery: (query: any) => void, setLoading: () => void}>(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default connect<{options: TremoteSuggestions, loaded: boolean}, {requestSuggestions: () => void, initializeQuery: (query: any) => void, setLoading: () => void}>(mapStateToProps, mapDispatchToProps)(SearchBar);
