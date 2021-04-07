@@ -17,19 +17,15 @@ export class GetServerData {
             query: 'query'
         }
         this.fetcHTTP = fetchDependency;
-
     }
-
     getSuggestions(): Promise<{error: boolean, errorObject: any} | any> {
         return new Promise(async (resolve, reject) => {
             try {
                 const response = await this.fetcHTTP.get(`${this.baseUrl}/${this.paths.suggestions}`);
                 const data = response.data;
-                console.log(data);
                 resolve(data);
                 
             } catch (error) {
-                console.log(error);
                 resolve({
                     error: true,
                     errorObject: error
