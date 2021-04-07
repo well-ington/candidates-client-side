@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, Action } from 'redux';
-import { GET_SUGGESTIONS, GET_RESULTS, UPDATE_FILTER, SET_LOADING, UNSET_LOADING } from '../actions/action-types';
+import { GET_SUGGESTIONS, GET_RESULTS, UPDATE_FILTER, SET_LOADING, UNSET_LOADING, REQUEST_ERROR, CLEAR_ERROR } from '../actions/action-types';
 import thunk from 'redux-thunk';
 
 export type TremoteSuggestions = {
@@ -14,6 +14,9 @@ export type TcandidateObject = {
     mainTech: string[];
     tech: string[];
     city: string[];
+    techScore: number;
+    mainTechScore: number;
+    matched: string[];
 }
 
 
@@ -35,7 +38,7 @@ type TmainStateObject = {
    queries: TqueryObject[];
    lastResult: TqueryObject;
    isLoading: boolean;
-   error: boolean;
+   error: string;
 }
 
 const initialState: TmainStateObject = {
@@ -56,7 +59,7 @@ const initialState: TmainStateObject = {
         candidates: []
     },
     isLoading: false,
-    error: false
+    error: ''
 }
 
 
@@ -91,6 +94,18 @@ const reducer = (state = initialState, action): TmainStateObject => {
                 ...state,
                 isLoading: false
             }
+        case REQUEST_ERROR: {
+            return {
+                ...state,
+                error: action.payload
+            }
+        }
+        case CLEAR_ERROR: {
+            return {
+                ...state,
+                error: ''
+            }
+        }
         default:
             return state;
     }
