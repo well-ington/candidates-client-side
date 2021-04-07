@@ -1,9 +1,14 @@
 .container {
+    display: flex;
+    flex-direction: column;
     background-color: hsl(255, 50%, 95%);
-    border-radius: 8px;
-    
+    border-radius: 0.8rem;
+    margin-bottom: 0.4rem;
 }
 
+.firstRow {
+    display: flex;
+}
 .card {
     flex-direction: row;
     display: inline-block;
@@ -12,7 +17,6 @@
 .row {
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;
-    width: 80vw;
     padding: 12px;
     margin: 6px;
     & > div {
@@ -28,12 +32,91 @@
 
 }
 
-.sub, .highlight {
-    font-weight: bold;
+.sub, .title {
     font-size: 1.2rem;
     margin-right: 0.6rem;
 }
 
+.title {
+    font-size: 1.4rem;    
+    font-weight: bold;
+    color: hsl(255, 20%, 20%);
+}
+
+
 .highlight {
     color: hsl(255, 70%, 40%);
+    font-weight: bold;
+    font-size: inherit;
+}
+
+
+
+.match {
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.techs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.techItem {
+    margin: 0.4rem;
+    border-radius: 10rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;    
+    background-color: hsl(105, 48%, 55%);
+    color: white;
+    align-self: center;
+    font-size: 1.2rem;
+}
+
+.matchedItem {
+    background-color: hsl(255, 60%, 51%);   
+}
+
+.infoBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+
+@media (max-width: 720px) {
+    
+    .container {
+        width: 80vw;
+    }    
+
+    .firstRow {        
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media (min-width: 721px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: 60rem;
+        padding: 0.8rem;
+    }
+
+    .infoBlock {
+        min-width: 20rem;
+    }
+
+    .firstRow {        
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
