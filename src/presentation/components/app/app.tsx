@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './app.scss';
 
 import { Router } from '../router/router';
+import { IconAttribution } from '../icon-attribution/icon-attribution';
 
 
 
@@ -15,16 +16,20 @@ export const App: React.FC = () => {
         }
     }
     return <div className={styles.container}>  
+    
         <div className={`${styles.searchWidget} ${firstQuery ? styles.homeSearchWidget : ''}`}>
-            <p>
-                Logo
+            <p className={styles.logo}>
+                GEEK SEEKER
             </p>
             <div className={styles.searchContainer}>
                 <SearchBar setQuery={setQueryHandler} />
             </div>
         </div>
 
-        <Router />             
+        <Router />
+
+
+        <IconAttribution />
     </div>
 }
 
