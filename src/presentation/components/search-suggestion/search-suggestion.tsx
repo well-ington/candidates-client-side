@@ -1,67 +1,82 @@
 import React from 'react';
 import styles from './search-suggestion.scss';
 
-
 interface ISuggestion {
     value: string;
     options: string[] | number[];
     change: (value: string) => void;
+    testid: string;
 }
 
-
-
-export const SearchSuggestion: React.FC<ISuggestion> = ({value, options, change}) => {
+export const SearchSuggestion: React.FC<ISuggestion> = ({value, options, change, testid = 'test-suggestions'}) => {
     const [selected, setSelected] = React.useState(0);
-
 
     let optionsArray: string[] = [...options].map(e => `${e}`);
     let isNumber = !Number.isNaN(Number(options[0]));
 
     let filteredItems = [];
 
-
     if(isNumber) {
-        const newArr = [...options];
-        newArr.sort((a,b) => a > b ? 1 : -1);
+        let newArr = [...options].map((item: number) => (item - Math.floor(item)) === 0.5 ? item : Math.floor(item));
 
-        optionsArray = newArr.map((item: number) => {
+        newArr.sort((a,b) => a > b ? 1 : -1);
+        let oldLength = newArr.length;
+        const emptyArray = [];
+
+        let biggest_number = newArr[newArr.length - 1];
+
+        for (let i = 0; i <= biggest_number; i++) {
+            if (newArr.indexOf(i) === -1) {
+                newArr.push(i);
+            }
+        }
+        if(oldLength !== newArr.length) {
+            newArr.sort((a,b) => a > b ? 1 : -1);
+        }       
+
+        newArr.forEach((item: number) => {
             const flooredNumber = Math.floor(item);
+
+            biggest_number = Math.max(item);
             if(flooredNumber !== item) {
                 const anotherNumber = item - flooredNumber;
                 if (anotherNumber == 0.5) {
-                    return `de ${flooredNumber} a ${flooredNumber+1} anos`;
+                    emptyArray.push(`de ${flooredNumber} a ${flooredNumber+1} anos`);
                 } else {
-                    return 'mais de ' + item + ' anos';
+                    emptyArray.push(`mais de ${Math.floor(item)} anos`);
                 }
             } else {
-                return item + ' anos';
+                emptyArray.push(`mais de ${Math.floor(item)} anos`);
             }
         });
-        //number
-        const striped_value = value.replace(/(\d+)(?!.*\d)(.+?)meio/g, (group, match) => `${match} a ${Number(match) + 1}`).replace(/[a-zA-Z]/g, "").trim();
 
-        filteredItems = optionsArray.filter(item => item.toLowerCase().search(striped_value.toLowerCase()) !== -1);
+        optionsArray = emptyArray;
+        const twoNumbersRegex = new RegExp(/(\d+)(.+?)(\d+)/);
+        let valueToCompare = [value];
+        let isDualRegex = false;
+
+        if(twoNumbersRegex.test(value)) {
+            isDualRegex = true;
+            valueToCompare = [...value.replace(twoNumbersRegex, "$1 $3").split(" ")]
+        } else {
+            valueToCompare = [value.replace(/(.+)?(\d+)(.+)?/, "$2")];
+        }
+
+        filteredItems = optionsArray.filter(item => {            
+            if (isDualRegex) {
+                return item.toLowerCase().search(valueToCompare[0].toLowerCase()) !== -1 && item.toLowerCase().search(valueToCompare[1].toLowerCase()) !== -1;
+            } else {
+                return item.toLowerCase().search(valueToCompare[0].toLowerCase()) !== -1;
+            }
+        });
     } else {
         //string
         filteredItems = optionsArray.filter(item => item.toLowerCase().search(value.toLowerCase()) !== -1);
     }
-
-    
-
-
-    
-    
-    
     
     if((selected > filteredItems.length - 1 || selected >= 8)) {
         setSelected(-1);
     }
-
-    if(selected == -1 && filteredItems.length > 0) {
-        setSelected(0);
-    }
-    
-    
 
     React.useEffect(() => {
         let lastTime = Date.now();
@@ -91,7 +106,6 @@ export const SearchSuggestion: React.FC<ISuggestion> = ({value, options, change}
             }
         }
 
-        
         window.addEventListener('keydown', captureKeys);
 
         return () => {
@@ -100,12 +114,11 @@ export const SearchSuggestion: React.FC<ISuggestion> = ({value, options, change}
 
     }, [selected, setSelected, filteredItems]);
 
-
     
-    return <div className={styles.container}>
+    return <div data-testid={testid} className={styles.container}>
     {
         filteredItems.length > 0 && value.length > 0 && filteredItems.slice(0, filteredItems.length > 8 ? 8 : filteredItems.length).map((suggestion, id) => {
-            return <p className={`${styles.item} ${selected === id ? styles.itemActive : ''}`}>{suggestion}</p>
+            return <p data-testid={`suggestion-${id}`} key={`suggestion-id-${id}`} className={`${styles.item} ${selected === id ? styles.itemActive : ''}`}>{suggestion}</p>
         })
     }
 </div>
