@@ -1,12 +1,11 @@
-import { TqueryObject } from '@/data/store/reducer/store';
-import React from 'react';
-import { connect } from 'react-redux';
-import { ErrorDisplay } from './components/error-display/error-display';
-import ResultContainer from './components/result-container/result-container';
-import SearchSkeleton from './components/search-skeleton/search-skeleton';
+import { TqueryObject } from "@/data/store/reducer/store";
+import React from "react";
+import { connect } from "react-redux";
+import { ErrorDisplay } from "./components/error-display/error-display";
+import ResultContainer from "./components/result-container/result-container";
+import SearchSkeleton from "./components/search-skeleton/search-skeleton";
 
-
-import styles from './home.scss';
+import styles from "./home.scss";
 
 type Thome = {
     results: TqueryObject; 
@@ -15,11 +14,10 @@ type Thome = {
 }
 
 const Home: React.FC<Thome> = ({results, loading, error}) => {
-    console.log(results);
     return <div className={styles.container}>
-        { loading ? <SearchSkeleton /> : '' }
+        { loading ? <SearchSkeleton /> : "" }
         { !loading && error.length === 0 && <ResultContainer candidates={results.candidates} />}
-        { error.length > 0 && !loading ? <ErrorDisplay message={error} /> : ''}
+        { error.length > 0 && !loading ? <ErrorDisplay message={error} /> : ""}
     </div>
 }
 

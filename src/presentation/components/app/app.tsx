@@ -1,11 +1,9 @@
-import SearchBar from '@/presentation/components/search-bar/search-bar';
-import React from 'react';
-import styles from './app.scss';
+import SearchBar from "@/presentation/components/search-bar/search-bar";
+import React from "react";
+import styles from "./app.scss";
 
-import { Router } from '../router/router';
-import { IconAttribution } from '../icon-attribution/icon-attribution';
-
-
+import { Router } from "../router/router";
+import { IconAttribution } from "../icon-attribution/icon-attribution";
 
 export const App: React.FC = () => {
     const [firstQuery, setFirstQuery] = React.useState(true);
@@ -17,7 +15,7 @@ export const App: React.FC = () => {
     }
     return <div className={styles.container}>  
     
-        <div className={`${styles.searchWidget} ${firstQuery ? styles.homeSearchWidget : ''}`}>
+        <div className={`${styles.searchWidget} ${firstQuery ? styles.homeSearchWidget : ""}`}>
             <p className={styles.logo}>
                 GEEK SEEKER
             </p>
@@ -28,8 +26,6 @@ export const App: React.FC = () => {
 
         <Router />
 
-
         <IconAttribution />
     </div>
 }
-

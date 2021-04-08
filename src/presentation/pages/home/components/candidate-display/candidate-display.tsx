@@ -1,6 +1,6 @@
-import { TcandidateObject } from '@/data/store/reducer/store';
-import React from 'react';
-import styles from './candidate-display.scss';
+import { TcandidateObject } from "@/data/store/reducer/store";
+import React from "react";
+import styles from "./candidate-display.scss";
 
 type TresultContainer = {
     candidate: TcandidateObject;
@@ -22,7 +22,7 @@ const CandidateDisplay: React.FC<TresultContainer> = ({ candidate: { id, matched
             </div>
             <div className={styles.techs}>                
                 {
-                    tech.map((item, index) => <p className={`${styles.techItem} ${matched.indexOf(item) !== -1 ? styles.matchedItem : ''}`} key={`tech_item_${index}`}>{item}</p>)
+                    tech.map((item, index) => <p className={`${styles.techItem} ${matched.indexOf(item) !== -1 ? styles.matchedItem : ""}`} key={`tech_item_${index}`}>{item}</p>)
                 }
             </div>
         </div> 

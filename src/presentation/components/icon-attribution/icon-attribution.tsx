@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './icon-attribution.scss';
+import React from "react";
+import styles from "./icon-attribution.scss";
 
 
 export const IconAttribution: React.FC = () => {
