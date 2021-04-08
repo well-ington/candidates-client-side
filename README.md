@@ -1,6 +1,6 @@
 # Geek Seeker client-side
 
-### Scripts
+## Scripts
 
 ### ```npm start```
 Esse script inicia o projeto no modo produção. Essencial para o funcionamento no heroku.
