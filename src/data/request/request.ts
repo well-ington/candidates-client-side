@@ -13,8 +13,8 @@ export class GetServerData {
     constructor(baseUrl: string, fetchDependency: any) {
         this.baseUrl = baseUrl;
         this.paths = {
-            suggestions: 'suggestions',
-            query: 'query'
+            suggestions: "suggestions",
+            query: "query"
         }
         this.fetcHTTP = fetchDependency;
     }
