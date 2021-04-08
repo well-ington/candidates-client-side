@@ -20,7 +20,9 @@ export const getServerSuggestions = () => {
                 });
             }            
         } catch (error) {
-            throw new Error("ops, something went wrong");
+            setTimeout(() => {
+                returnedDispatchFunction(dispatch);
+            }, 500);
         }
     }
     return returnedDispatchFunction;
@@ -30,8 +32,12 @@ export const getServerQuery = (query: any) => {
     return async (dispatch: Dispatch) => { 
         dispatch({
             type: CLEAR_ERROR
-        });       
+        });
+
         try { 
+            dispatch({
+                type: SET_LOADING
+            });
             const data: any = await dataHandler.getResults(query);
             const stringedQuery = JSON.stringify(query); 
             
@@ -50,8 +56,7 @@ export const getServerQuery = (query: any) => {
                         candidates: data.results
                     }
                 });
-            }
-            
+            }            
             
             dispatch({
                 type: UNSET_LOADING
