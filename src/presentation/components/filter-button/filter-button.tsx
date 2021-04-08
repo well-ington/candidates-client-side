@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button } from '..';
-import styles from './filter-button.scss';
+import React from "react";
+import { Button } from "..";
+import styles from "./filter-button.scss";
 
 type TfilterButton = {
     filter: any;
@@ -8,33 +8,45 @@ type TfilterButton = {
 }
 
 export const FilterButton: React.FC<TfilterButton> = ({ filter, setFilter }) => {
-    const filteredItems = Object.keys(filter).filter(a => filter[a].length).map((key: string) => {
-        if(Array.isArray(filter[key])) {
-            return filter[key].map((tech, index) => {
-                return <Button className={styles.button} variant="filter" action={() => {
-                    const newArray = Array.from(filter[key]);
-                    newArray.splice(index, 1);
-                    setFilter(prevState => {
-                        return {
-                            ...prevState,
-                            [key]: newArray
-                        }
-                    })
-                }}>{tech}</Button>
-            });
-        } else {
-            return <Button className={styles.button} variant="filter" action={() => {
-                setFilter(prevState => {
-                    return {
-                        ...prevState,
-                        [key]: ''
-                    }
-                })
-            }}>{filter[key]}</Button>
-        }
-    });
+    const filteredItems = Object.keys(filter).filter((a: string) => filter[a].length);
 
-    return <div className={styles.container}>
-       {filteredItems}
+    const alterPlainFilter = (key: string) => {
+        setFilter(prevState => {
+            return {
+                ...prevState,
+                [key]: ""
+            }
+        });
+    };
+
+    const alterArrayFilter = (key: string, index: number) => {
+        const newArray = Array.from(filter[key]);
+        newArray.splice(index, 1);
+        setFilter(prevState => {
+            return {
+                ...prevState,
+                [key]: newArray
+            }
+        })
+    }
+
+    return <div data-testid="filter-button-test" className={styles.container}>
+       {
+        filteredItems.map((key: string, index: number) => {
+            if(Array.isArray(filter[key])) {
+                return filter[key].map((tech: string, techIndex: number) => {
+                    return <Button className={styles.button} variant="filter" 
+                    key={`tech${index}${techIndex}`}
+                    testid={`tech-${techIndex}`}
+                    action={() => alterArrayFilter(key, techIndex)}>{tech}</Button>
+                });
+            } else {
+                return <Button className={styles.button} variant="filter" 
+                key={`city-exp-${index}`}
+                testid={`opt-${index}`}
+                action={() => alterPlainFilter(key)}>{filter[key]}</Button>
+            }
+        })
+    }
     </div>
 };
