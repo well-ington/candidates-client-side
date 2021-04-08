@@ -39,7 +39,9 @@
   color: white;
   font-weight: bold;
   letter-spacing: 0.2rem;
+
   & .active {
+      
     &:hover {
       background-color: hsl(115, 60%, 91%);
       color: hsl(155, 60%, 31%);

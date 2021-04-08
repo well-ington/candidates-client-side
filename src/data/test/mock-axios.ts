@@ -6,7 +6,7 @@ export class MockedAxios {
     constructor(success: boolean, response: any) {
         this.success = success;
         this.response = response;
-        this.lastUrl = '';
+        this.lastUrl = "";
         this.lastQuery = {};
     }
 
