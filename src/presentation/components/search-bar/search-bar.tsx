@@ -35,7 +35,7 @@ const SearchBar: React.FC<ISearchBar> = ({ options, setQuery, requestSuggestions
     const keyBlackList = ["constructor", "{}"];
     for (let key in filterRequest) {
         const parsedKey = keyBlackList.indexOf(key) === -1 ? `${key}` : "";
-        if(!filterRequest[parsedKey].length && !lazyKeySelector.length) {
+        if(!filterRequest[`${parsedKey}`].length && !lazyKeySelector.length) {
             lazyKeySelector = key;
         }
     }
@@ -48,7 +48,7 @@ const SearchBar: React.FC<ISearchBar> = ({ options, setQuery, requestSuggestions
         setValue("");
         const previousValue = {...filterRequest};
         
-        if(previousValue[`${lazyKeySelector}`] !== undefined) {            
+        if(previousValue[`${lazyKeySelector}`]) {            
             if (Array.isArray(previousValue[`${lazyKeySelector}`])) {
                 const newArr = Array.from(previousValue[`${lazyKeySelector}`]);
                 if(newArr.indexOf(newValue) === -1) {

@@ -62,9 +62,8 @@ export const SearchSuggestion: React.FC<ISuggestion> = ({value, options, change,
         if(twoNumbersRegex.test(value)) {
             isDualRegex = true;
             valueToCompare = [...value.replace(twoNumbersRegex, "$1 $3").split(" ")]
-        } else {
-            
-            valueToCompare = [value.replace(/(.+)?(\d+)/, "$2-").split("-")[0]];
+        } else {            
+            valueToCompare = [value.replace(/(\d+)/, "-$2-").split("-")[1]];
         }
 
         filteredItems = optionsArray.filter(item => {            
@@ -101,8 +100,8 @@ export const SearchSuggestion: React.FC<ISuggestion> = ({value, options, change,
                         }
                         break;
                     case 13:                    
-                        if (filteredItems[Number(selected)] !== undefined) {
-                            change(filteredItems[(selected)]);
+                        if (filteredItems[Number(selected)]) {
+                            change(filteredItems[Number(selected)]);
                         }
                         break;
                 }

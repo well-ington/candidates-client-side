@@ -46,7 +46,7 @@ export const FilterButton: React.FC<TfilterButton> = ({ filter, setFilter }) => 
                 return <Button className={styles.button} variant="filter" 
                 key={`city-exp-${index}`}
                 testid={`opt-${index}`}
-                action={() => alterPlainFilter(key)}>{filter[`${key}`]}</Button>
+                action={() => alterPlainFilter(key)}>{filter[`${key}`]}</Button>;
             }
         })
     }
