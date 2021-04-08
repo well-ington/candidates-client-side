@@ -2,9 +2,11 @@
   from {
     left: -150px;
   }
+
   to {
     left: calc(100% - 150px);
   }
+
 }
 
 .skeleton {

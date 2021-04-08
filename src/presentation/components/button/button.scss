@@ -3,7 +3,6 @@
   padding-right: 8px;
   padding-top: 4px;
   padding-bottom: 4px;
-  border-width: 2px;
   border-style: solid;
   font-size: 1.4rem;
 }
@@ -13,23 +12,23 @@
   padding-right: 8px;
   padding-top: 4px;
   padding-bottom: 4px;
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
   font-size: 1.4rem;
   border-radius: 50px;
-  border-color: hsl(255, 60%, 31%);
-  border-width: 1px;
+  border-color: hsl(255, 60%, 31%);  
   background-color: hsl(255, 60%, 51%);
   margin-right: 5px;
   cursor: pointer;
   transition: 500ms;
   color: hsl(255, 60%, 91%);
   font-weight: bold;
-  
+
   &:hover {
     background-color: hsl(255, 60%, 94%);
     color: hsl(255, 60%, 31%);
   }
+
 }
 
 .proceed {
@@ -46,7 +45,8 @@
   & .active:hover {
     background-color: hsl(115, 60%, 91%);
     color: hsl(155, 60%, 31%);
-  }  
+  }
+
 }
 
 @media (max-width: 720px) {
