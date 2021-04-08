@@ -8,24 +8,26 @@ type TfilterButton = {
 }
 
 export const FilterButton: React.FC<TfilterButton> = ({ filter, setFilter }) => {
-    const filteredItems = Object.keys(filter).filter((a: string) => filter[a].length);
+    //whitelist the object keys to avoid object sink
+    const myObjKeys: string[] = ["city","experience", "technologies"];
+    const filteredItems = myObjKeys.filter((a: string) => filter[`${a}`].length);
 
     const alterPlainFilter = (key: string) => {
         setFilter(prevState => {
             return {
                 ...prevState,
-                [key]: ""
+                [`${key}`]: ""
             }
         });
     };
 
     const alterArrayFilter = (key: string, index: number) => {
-        const newArray = Array.from(filter[key]);
+        const newArray = Array.from(filter[`${key}`]);
         newArray.splice(index, 1);
         setFilter(prevState => {
             return {
                 ...prevState,
-                [key]: newArray
+                [`${key}`]: newArray
             }
         })
     }
@@ -33,8 +35,8 @@ export const FilterButton: React.FC<TfilterButton> = ({ filter, setFilter }) => 
     return <div data-testid="filter-button-test" className={styles.container}>
        {
         filteredItems.map((key: string, index: number) => {
-            if(Array.isArray(filter[key])) {
-                return filter[key].map((tech: string, techIndex: number) => {
+            if(Array.isArray(filter[`${key}`])) {
+                return filter[`${key}`].map((tech: string, techIndex: number) => {
                     return <Button className={styles.button} variant="filter" 
                     key={`tech${index}${techIndex}`}
                     testid={`tech-${techIndex}`}
@@ -44,7 +46,7 @@ export const FilterButton: React.FC<TfilterButton> = ({ filter, setFilter }) => 
                 return <Button className={styles.button} variant="filter" 
                 key={`city-exp-${index}`}
                 testid={`opt-${index}`}
-                action={() => alterPlainFilter(key)}>{filter[key]}</Button>
+                action={() => alterPlainFilter(key)}>{filter[`${key}`]}</Button>
             }
         })
     }

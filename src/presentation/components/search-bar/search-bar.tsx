@@ -32,9 +32,10 @@ const SearchBar: React.FC<ISearchBar> = ({ options, setQuery, requestSuggestions
 
 
     let lazyKeySelector = "";
-
+    const keyBlackList = ["constructor", "{}"];
     for (let key in filterRequest) {
-        if(!filterRequest[key].length && !lazyKeySelector.length) {
+        const parsedKey = keyBlackList.indexOf(key) === -1 ? `${key}` : "";
+        if(!filterRequest[parsedKey].length && !lazyKeySelector.length) {
             lazyKeySelector = key;
         }
     }
@@ -47,15 +48,15 @@ const SearchBar: React.FC<ISearchBar> = ({ options, setQuery, requestSuggestions
         setValue("");
         const previousValue = {...filterRequest};
         
-        if(previousValue[lazyKeySelector] !== undefined) {            
-            if (Array.isArray(previousValue[lazyKeySelector])) {
-                const newArr = Array.from(previousValue[lazyKeySelector]);
+        if(previousValue[`${lazyKeySelector}`] !== undefined) {            
+            if (Array.isArray(previousValue[`${lazyKeySelector}`])) {
+                const newArr = Array.from(previousValue[`${lazyKeySelector}`]);
                 if(newArr.indexOf(newValue) === -1) {
                     newArr.push(newValue);
-                    previousValue[lazyKeySelector] = newArr;
+                    previousValue[`${lazyKeySelector}`] = newArr;
                 }
             } else {
-                previousValue[lazyKeySelector] = newValue;
+                previousValue[`${lazyKeySelector}`] = newValue;
             }
             
             setFilterRequest(previousValue);
@@ -72,10 +73,9 @@ const SearchBar: React.FC<ISearchBar> = ({ options, setQuery, requestSuggestions
     const isValidQuery = filterRequest.city.length && filterRequest.experience.length && filterRequest.technologies.length;
 
 
-
     return <div className={styles.container}>
         <div className={styles.infoWrapper}>
-            <p className={styles.inputDisplay}>{selectorInputName[lazyKeySelector]}</p>
+            <p className={styles.inputDisplay}>{selectorInputName[`${lazyKeySelector}`]}</p>
             <div className={styles.inputButtonWrapper}>
                 <input data-testid="test-searchbar" disabled={!loaded} placeholder={loaded ? "" : "Carregando sugestões..."} className={`${styles.textInput} ${loaded ? "" : styles.loadingInput}`} value={value} type="text" onChange={(e: {target: {value: string}}) => setValue(e.target.value)} />
                 <div className={styles.buttonWrapper}>
@@ -92,7 +92,7 @@ const SearchBar: React.FC<ISearchBar> = ({ options, setQuery, requestSuggestions
 
                 </div>
             </div>            
-            <SearchSuggestion value={value} change={changeValue} options={options[lazyKeySelector] || []} />
+            <SearchSuggestion value={value} change={changeValue} options={options[`${lazyKeySelector}`] || []} />
             <FilterButton filter={filterRequest} setFilter={setFilterRequest} />
         </div>
     </div>
