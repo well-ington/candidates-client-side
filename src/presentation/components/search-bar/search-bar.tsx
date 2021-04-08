@@ -1,10 +1,10 @@
-import React from 'react';
-import { SET_LOADING } from '@/data/store/actions/action-types';
-import { getServerQuery, getServerSuggestions } from '@/data/store/actions/actions';
-import { TremoteSuggestions } from '@/data/store/reducer/store';
-import { connect } from 'react-redux';
-import { Button, FilterButton, SearchSuggestion } from '..';
-import styles from './search-bar.scss';
+import React from "react";
+import { SET_LOADING } from "@/data/store/actions/action-types";
+import { getServerQuery, getServerSuggestions } from "@/data/store/actions/actions";
+import { TremoteSuggestions } from "@/data/store/reducer/store";
+import { connect } from "react-redux";
+import { Button, FilterButton, SearchSuggestion } from "..";
+import styles from "./search-bar.scss";
 
 interface ISearchBar {
     options?: TremoteSuggestions;
@@ -23,15 +23,15 @@ const SearchBar: React.FC<ISearchBar> = ({ options, setQuery, requestSuggestions
     }
 
 
-    const [value, setValue] = React.useState('');
+    const [value, setValue] = React.useState("");
     const [filterRequest, setFilterRequest] = React.useState({
-        city: '',
-        experience: '',
+        city: "",
+        experience: "",
         technologies: []
     });
 
 
-    let lazyKeySelector = '';
+    let lazyKeySelector = "";
 
     for (let key in filterRequest) {
         if(!filterRequest[key].length && !lazyKeySelector.length) {
@@ -39,12 +39,12 @@ const SearchBar: React.FC<ISearchBar> = ({ options, setQuery, requestSuggestions
         }
     }
     if (!lazyKeySelector.length) {
-        lazyKeySelector = 'technologies';
+        lazyKeySelector = "technologies";
     }
 
 
     const changeValue = (newValue: string) => {
-        setValue('');
+        setValue("");
         const previousValue = {...filterRequest};
         
         if(previousValue[lazyKeySelector] !== undefined) {            
@@ -77,10 +77,10 @@ const SearchBar: React.FC<ISearchBar> = ({ options, setQuery, requestSuggestions
         <div className={styles.infoWrapper}>
             <p className={styles.inputDisplay}>{selectorInputName[lazyKeySelector]}</p>
             <div className={styles.inputButtonWrapper}>
-                <input disabled={!loaded} placeholder={loaded ? '' : 'Carregando sugestões...'} className={`${styles.textInput} ${loaded ? '' : styles.loadingInput}`} data-testid="searchBar" value={value} type="text" onChange={(e: {target: {value: string}}) => setValue(e.target.value)} />
+                <input data-testid="test-searchbar" disabled={!loaded} placeholder={loaded ? "" : "Carregando sugestões..."} className={`${styles.textInput} ${loaded ? "" : styles.loadingInput}`} value={value} type="text" onChange={(e: {target: {value: string}}) => setValue(e.target.value)} />
                 <div className={styles.buttonWrapper}>
-                <Button disabled={!isValidQuery} variant="proceed" action={() => {
-                    setValue('');
+                <Button testid="test-proceed" disabled={!isValidQuery} variant="proceed" action={() => {
+                    setValue("");
                     setQuery();
                     setLoading();
                     setTimeout(() => {
