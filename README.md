@@ -2,17 +2,17 @@
 
 ### Scripts
 
-```npm start```
+### ```npm start```
 Esse script inicia o projeto no modo produção. Essencial para o funcionamento no heroku.
 
-```npm run dev```
+### ```npm run dev```
 Abre um servidor com o webpack no modo desenvolvedor. A página será atualizada para cada mudança no código dentro da pasta ```src```.
 
-```npm run build```
-Gera o código no modo produção.
+### ```npm run build```
+Gera o código no modo produção usando configurações de produção.
 
-```npm test```
+### ```npm test```
 Roda todos os testes unitários.
 
-```npm run test:watch```
+### ```npm run test:watch```
 Roda todos os testes unitários e fica no modo "watch", onde o jest irá rodar os testes assim que perceber qualquer mudança.
