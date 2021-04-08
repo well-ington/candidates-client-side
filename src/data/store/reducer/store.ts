@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware, Action } from 'redux';
-import { GET_SUGGESTIONS, GET_RESULTS, UPDATE_FILTER, SET_LOADING, UNSET_LOADING, REQUEST_ERROR, CLEAR_ERROR } from '../actions/action-types';
-import thunk from 'redux-thunk';
+import { createStore, applyMiddleware, Action } from "redux";
+import { GET_SUGGESTIONS, GET_RESULTS, UPDATE_FILTER, SET_LOADING, UNSET_LOADING, REQUEST_ERROR, CLEAR_ERROR } from "../actions/action-types";
+import thunk from "redux-thunk";
 
 export type TremoteSuggestions = {
     city: string[];
@@ -42,10 +42,10 @@ type TmainStateObject = {
    suggestionsLoaded: boolean;
 }
 
-const initialState: TmainStateObject = {
+export const initialState: TmainStateObject = {
     user: {
-        city: '',
-        experience: '',
+        city: "",
+        experience: "",
         technologies: []
     },
     suggestion: {
@@ -56,17 +56,17 @@ const initialState: TmainStateObject = {
     queries: [],
     lastResult: {
         date: 0,
-        query: '',
+        query: "",
         candidates: []
     },
     isLoading: false,
-    error: '',
+    error: "",
     suggestionsLoaded: false
 }
 
 
 
-const reducer = (state = initialState, action): TmainStateObject => {
+export const reducer = (state = initialState, action): TmainStateObject => {
     switch(action.type) {
         case GET_SUGGESTIONS:  
             return {
@@ -106,7 +106,7 @@ const reducer = (state = initialState, action): TmainStateObject => {
         case CLEAR_ERROR: {
             return {
                 ...state,
-                error: ''
+                error: ""
             }
         }
         default:
