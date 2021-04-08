@@ -9,26 +9,10 @@
 .firstRow {
   display: flex;
 }
+
 .card {
   flex-direction: row;
   display: inline-block;
-}
-
-.row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
-  padding: 12px;
-  margin: 6px;
-  & > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-.title {
-  font-size: 1.4rem;
 }
 
 .sub,
