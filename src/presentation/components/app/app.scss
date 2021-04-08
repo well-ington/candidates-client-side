@@ -1,23 +1,22 @@
 .searchWidget {
-    position: absolute;
-    display: block;
-    left: 50%;
-    transition: 500ms;
-    transform: translate(-50%, 0);
-    top: 0.5rem;    
-    z-index: 5;
-    & p {
-        text-align: center;
-    }
+  position: absolute;
+  display: block;
+  left: 50%;
+  transition: 500ms;
+  transform: translate(-50%, 0);
+  top: 0.5rem;
+  z-index: 5;
+  & p {
+    text-align: center;
+  }
 }
 
 .homeSearchWidget {
-    top: 10vh;
+  top: 10vh;
 }
 
-
 .logo {
-    font-family: 'Squada One', monospace;
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
+  font-family: "Squada One", monospace;
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
 }

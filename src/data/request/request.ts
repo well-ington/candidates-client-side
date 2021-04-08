@@ -1,7 +1,7 @@
 export class GetServerData {
     baseUrl: string;
     paths: {
-        suggestions:  string;
+        suggestions: string;
         query: string;
     };
     //injected dependency
@@ -15,16 +15,15 @@ export class GetServerData {
         this.paths = {
             suggestions: "suggestions",
             query: "query"
-        }
+        };
         this.fetcHTTP = fetchDependency;
     }
-    getSuggestions(): Promise<{error: boolean, errorObject: any} | any> {
+    getSuggestions(): Promise<{ error: boolean, errorObject: any } | any> {
         return new Promise(async (resolve, reject) => {
             try {
                 const response = await this.fetcHTTP.get(`${this.baseUrl}/${this.paths.suggestions}`);
                 const data = response.data;
                 resolve(data);
-                
             } catch (error) {
                 resolve({
                     error: true,
@@ -34,7 +33,7 @@ export class GetServerData {
         });
     }
 
-    getResults(queryObject: any) {        
+    getResults(queryObject: any) {
         return new Promise(async (resolve, reject) => {
             try {
                 const response = await this.fetcHTTP.post(`${this.baseUrl}/${this.paths.query}`, queryObject);

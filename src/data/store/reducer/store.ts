@@ -6,7 +6,7 @@ export type TremoteSuggestions = {
     city: string[];
     experience: string[];
     technologies: string[];
-}
+};
 
 export type TcandidateObject = {
     id: number;
@@ -17,20 +17,20 @@ export type TcandidateObject = {
     techScore: number;
     mainTechScore: number;
     matched: string[];
-}
+};
 
 
 export type TqueryObject = {
     date: number;
     query: string;
     candidates: TcandidateObject[];
-}
+};
 
 type TuserQueryObject = {
     city: string;
     experience: string;
     technologies: string[];
-}
+};
 
 type TmainStateObject = {
    user: TuserQueryObject;
@@ -40,7 +40,7 @@ type TmainStateObject = {
    isLoading: boolean;
    error: string;
    suggestionsLoaded: boolean;
-}
+};
 
 export const initialState: TmainStateObject = {
     user: {
@@ -62,7 +62,7 @@ export const initialState: TmainStateObject = {
     isLoading: false,
     error: "",
     suggestionsLoaded: false
-}
+};
 
 
 

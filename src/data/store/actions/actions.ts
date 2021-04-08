@@ -18,7 +18,7 @@ export const getServerSuggestions = () => {
                     type: GET_SUGGESTIONS,
                     payload: data
                 });
-            }            
+            }
         } catch (error) {
             setTimeout(() => {
                 returnedDispatchFunction(dispatch);
@@ -29,18 +29,18 @@ export const getServerSuggestions = () => {
 }
 
 export const getServerQuery = (query: any) => {
-    return async (dispatch: Dispatch) => { 
+    return async (dispatch: Dispatch) => {
         dispatch({
             type: CLEAR_ERROR
         });
 
-        try { 
+        try {
             dispatch({
                 type: SET_LOADING
             });
             const data: any = await dataHandler.getResults(query);
-            const stringedQuery = JSON.stringify(query); 
-            
+            const stringedQuery = JSON.stringify(query);
+
             if (data.results.length === 0) {
                 dispatch({
                     type: REQUEST_ERROR,
@@ -56,20 +56,20 @@ export const getServerQuery = (query: any) => {
                         candidates: data.results
                     }
                 });
-            }            
-            
+            }
+
             dispatch({
                 type: UNSET_LOADING
             });
         } catch (error) {
             dispatch({
                 type: UNSET_LOADING
-            });            
-            
+            });
+
             dispatch({
                 type: REQUEST_ERROR,
                 payload: "something went wrong"
-            });         
+            });
         }
     }
 }

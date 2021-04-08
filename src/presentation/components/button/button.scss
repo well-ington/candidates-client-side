@@ -1,85 +1,75 @@
 .button {
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    border-width: 2px;
-    border-style: solid;
-    font-size: 1.4rem;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-width: 2px;
+  border-style: solid;
+  font-size: 1.4rem;
 }
 
-.filter {   
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    border-width: 2px;
-    border-style: solid;
-    font-size: 1.4rem; 
-    border-radius: 50px;
-    border-color: hsl(255, 60%, 31%);
-    border-width: 1px;
-    background-color: hsl(255, 60%, 51%);
-    margin-right: 5px;
-    cursor: pointer;
-    transition: 500ms;
-    color: hsl(255, 60%, 91%);
-    font-weight: bold;
-    &:hover {
-        background-color: hsl(255, 60%, 94%);
-        color: hsl(255, 60%, 31%);
-    }
-}
-
-
-
-.add {
-
+.filter {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-width: 2px;
+  border-style: solid;
+  font-size: 1.4rem;
+  border-radius: 50px;
+  border-color: hsl(255, 60%, 31%);
+  border-width: 1px;
+  background-color: hsl(255, 60%, 51%);
+  margin-right: 5px;
+  cursor: pointer;
+  transition: 500ms;
+  color: hsl(255, 60%, 91%);
+  font-weight: bold;
+  &:hover {
+    background-color: hsl(255, 60%, 94%);
+    color: hsl(255, 60%, 31%);
+  }
 }
 
 .proceed {
-    border-color: hsl(105, 25%, 25%);
-    background-color: hsl(105, 48%, 55%);
-    cursor: pointer;
-    transition: 500ms;
-    color: white;
-    font-weight: bold;
-    letter-spacing: 0.2rem;    
-    & .active {
-        &:hover {
-            background-color: hsl(115, 60%, 91%);
-            color: hsl(155, 60%, 31%);
-        }
+  border-color: hsl(105, 25%, 25%);
+  background-color: hsl(105, 48%, 55%);
+  cursor: pointer;
+  transition: 500ms;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  & .active {
+    &:hover {
+      background-color: hsl(115, 60%, 91%);
+      color: hsl(155, 60%, 31%);
     }
-    border-radius: 5rem;
-    border: none;
-    
+  }
+  border-radius: 5rem;
+  border: none;
 }
 
 @media (max-width: 720px) {
-    .proceed {
-        flex-direction: column;
-        align-items: center;
-        width: 80vw;
-        margin-bottom: 0.4rem;
-    }
+  .proceed {
+    flex-direction: column;
+    align-items: center;
+    width: 80vw;
+    margin-bottom: 0.4rem;
+  }
 }
 
 @media (min-width: 721px) {
-    .proceed {
-        flex-direction: row;
-        transform: translate(-25%, 0);
-        width: 3.4rem;
-        height: 3.4rem;
-    }
+  .proceed {
+    flex-direction: row;
+    transform: translate(-25%, 0);
+    width: 3.4rem;
+    height: 3.4rem;
+  }
 }
-    
-
-
 
 .inactive {
-    border-color: hsl(0, 0%, 34%);
-    background-color: hsl(0, 0%, 58%);
-    opacity: 0.8;
-    cursor: not-allowed;
+  border-color: hsl(0, 0%, 34%);
+  background-color: hsl(0, 0%, 58%);
+  opacity: 0.8;
+  cursor: not-allowed;
 }

@@ -1,41 +1,46 @@
 @keyframes slide-right {
-    from {
-        left: -150px;
-    }
-    to   {
-        left: calc(100% - 150px);
-    }
+  from {
+    left: -150px;
+  }
+  to {
+    left: calc(100% - 150px);
+  }
 }
 
 .skeleton {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 50px;
-    & > div {
-        width: 60vw;
-        height: 50px;
-        background-color: hsl(255, 10%, 60%);
-        margin: 4px;
-        border-radius: 100px;
-        position: relative;
-        display: inline-block;
-        opacity: 0.3;
-        &::before {
-            content: '';
-            display: block;
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 40px;
-            width: 150px;
-            opacity: 0.4;
-            background: linear-gradient(to right, transparent 0%, hsl(255, 50%, 90%) 50%, transparent 100%);
-            animation-name: slide-right;
-            animation-duration: 1250ms;
-            animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
-            animation-iteration-count: infinite;
-        }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  & > div {
+    width: 60vw;
+    height: 50px;
+    background-color: hsl(255, 10%, 60%);
+    margin: 4px;
+    border-radius: 100px;
+    position: relative;
+    display: inline-block;
+    opacity: 0.3;
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 40px;
+      width: 150px;
+      opacity: 0.4;
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        hsl(255, 50%, 90%) 50%,
+        transparent 100%
+      );
+      animation-name: slide-right;
+      animation-duration: 1250ms;
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      animation-iteration-count: infinite;
     }
+  }
 }

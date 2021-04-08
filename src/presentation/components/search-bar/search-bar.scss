@@ -1,73 +1,73 @@
 .container {
-    padding: 8px;
+  padding: 8px;
 }
 
 .textInput {
-    border-width: 1px;
-    border-style: solid;
-    border-color: hsl(255, 10%, 30%);
-    min-width: 80vw;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 8px;
-    padding-bottom: 4px;
-    margin-top: 8px;
-    margin-bottom: 6px;
-    font-size: 1.4rem;
-    text-align: center;
-    border-radius: 10rem;
-    transition: 128ms;
-    &:focus {
-        border-color: hsl(255, 60%, 50%);
-    }
+  border-width: 1px;
+  border-style: solid;
+  border-color: hsl(255, 10%, 30%);
+  min-width: 80vw;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 8px;
+  padding-bottom: 4px;
+  margin-top: 8px;
+  margin-bottom: 6px;
+  font-size: 1.4rem;
+  text-align: center;
+  border-radius: 10rem;
+  transition: 128ms;
+  &:focus {
+    border-color: hsl(255, 60%, 50%);
+  }
 }
 
 .loadingInput {
-    opacity: 0.4;
+  opacity: 0.4;
 }
 
 .infoWrapper {
-    position: relative;
+  position: relative;
 }
 
-
-.inputDisplay, .highlight {
-    font-size: 1.6rem;
+.inputDisplay,
+.highlight {
+  font-size: 1.6rem;
 }
 
 .highlight {
-    color: hsl(255, 60%, 50%);
-    font-weight: bold;
+  color: hsl(255, 60%, 50%);
+  font-weight: bold;
 }
 
 .inputButtonWrapper {
-    display: flex;
+  display: flex;
 }
 
 .searchIcon {
-    height: 20px;
-    width: 20px;
+  height: 20px;
+  width: 20px;
 }
 
 .buttonWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 @media (max-width: 720px) {
-    .inputButtonWrapper {
-        flex-direction: column;
-        align-items: center;
-    }
+  .inputButtonWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 @media (min-width: 721px) {
-    .inputButtonWrapper {
-        flex-direction: row;
-    }
+  .inputButtonWrapper {
+    flex-direction: row;
+  }
 
-    .textInput {        
-        border-right: 0;
-    }
+  .textInput {
+    border-right: 0;
+  }
 }

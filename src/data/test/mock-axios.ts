@@ -12,8 +12,8 @@ export class MockedAxios {
 
     get(url: string) {
         this.lastUrl = url;
-        return new Promise((resolve,reject) => {
-            if(this.success && this.response) {
+        return new Promise((resolve, reject) => {
+            if (this.success && this.response) {
                 resolve({ data: this.response });
             } else {
                 reject("error");
@@ -24,8 +24,8 @@ export class MockedAxios {
     post(url: string, options?: any) {
         this.lastUrl = options;
         this.lastQuery = options;
-        return new Promise((resolve,reject) => {
-            if(this.success && this.response) {
+        return new Promise((resolve, reject) => {
+            if (this.success && this.response) {
                 resolve({ data: this.response });
             } else {
                 reject("error");
@@ -34,6 +34,6 @@ export class MockedAxios {
     }
 }
 
-export const createAxiosMock: (success: boolean, response: any) => MockedAxios = (success, response) => {   
+export const createAxiosMock: (success: boolean, response: any) => MockedAxios = (success, response) => {
     return new MockedAxios(success, response);
 };
