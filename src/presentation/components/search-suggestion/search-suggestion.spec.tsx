@@ -1,6 +1,7 @@
 import React from "react";
+
 import { SearchSuggestion } from "./search-suggestion";
-import { fireEvent, cleanup, render, RenderResult } from "@testing-library/react";
+import { cleanup, render, RenderResult } from "@testing-library/react";
 
 class searchSuggestionSpy {
     value: string;
@@ -53,8 +54,8 @@ describe("Testing Search Suggestion basic functionalities", () => {
         const domNode = sut.getByTestId(testid);
 
         expect(firstSuggestionNode.innerHTML).toEqual(options[0]);
-
-        expect(domNode.childElementCount).toEqual(1);
+        //suggestion + UI text
+        expect(domNode.childElementCount).toEqual(2);
     });
 
     it("Return three options", () => {
@@ -70,8 +71,8 @@ describe("Testing Search Suggestion basic functionalities", () => {
         const domNode = sut.getByTestId(testid);
 
         expect(firstSuggestionNode.innerHTML).toEqual(options[0]);
-        
-        expect(domNode.childElementCount).toEqual(3);
+        //suggestion + UI text
+        expect(domNode.childElementCount).toEqual(4);
     });
 
     it("Return no options when there is no match", () => {
