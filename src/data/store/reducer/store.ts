@@ -13,7 +13,7 @@ export type TcandidateObject = {
     experience: string;
     mainTech: string[];
     tech: string[];
-    city: string[];
+    city: string;
     techScore: number;
     mainTechScore: number;
     matched: string[];
