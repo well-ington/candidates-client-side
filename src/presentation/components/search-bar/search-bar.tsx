@@ -52,10 +52,10 @@ const SearchBar: React.FC<ISearchBar> = ({
   }
 
   const changeValue = (newValue: string) => {
+    // console.log(newValue);
     setValue("");
     const previousValue = { ...filterRequest };
-
-    if (previousValue[`${lazyKeySelector}`]) {
+    if (previousValue.hasOwnProperty(lazyKeySelector)) {
       if (Array.isArray(previousValue[`${lazyKeySelector}`])) {
         const newArr = Array.from(previousValue[`${lazyKeySelector}`]);
         if (newArr.indexOf(newValue) === -1) {
@@ -64,7 +64,7 @@ const SearchBar: React.FC<ISearchBar> = ({
         }
       } else {
         previousValue[`${lazyKeySelector}`] = newValue;
-      }
+      }     
 
       setFilterRequest(previousValue);
     }
