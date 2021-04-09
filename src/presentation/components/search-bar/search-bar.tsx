@@ -27,7 +27,7 @@ const SearchBar: React.FC<ISearchBar> = ({
   loaded,
 }) => {
   const [firstLoad, setFirstLoad] = React.useState(true);
-  if (firstLoad) {
+  if (firstLoad && !loaded) {
     requestSuggestions();
     setFirstLoad(false);
   }

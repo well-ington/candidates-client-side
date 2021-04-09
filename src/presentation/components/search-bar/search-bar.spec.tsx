@@ -48,15 +48,14 @@ describe("Testing search bar basic functionalities", () => {
     cleanup();
   });
 
-  it("Renders correctly with search bar disabled and proceed button disabled", () => {
-    const { sut } = makeSut();
-    const searchBarInput = sut.getByTestId(
-      "test-searchbar"
-    ) as HTMLInputElement;
+  it("Renders correctly and dispatch an action to call for suggestions", () => {
+    const { sut, mockedStore } = makeSut();
+    const searchBarInput = sut.getByTestId("test-searchbar") as HTMLInputElement;
     expect(searchBarInput).toBeTruthy();
     expect(searchBarInput.disabled).toEqual(true);
     const proceedButton = sut.getByTestId("test-proceed") as HTMLButtonElement;
     expect(proceedButton.disabled).toEqual(true);
+    expect(mockedStore.dispatch).toHaveBeenCalledTimes(1);
   });
 
   it("Should be enabled if suggestions are loaded, should show suggestions when the user input something", async () => {
@@ -77,7 +76,8 @@ describe("Testing search bar basic functionalities", () => {
     expect(searchBarInput).toBeTruthy();
     expect(searchBarInput.disabled).toEqual(false);
 
-    expect(mockedStore.dispatch).toHaveBeenCalledTimes(1);
+    expect(mockedStore.dispatch).toHaveBeenCalledTimes(0);
+
     fireEvent.input(searchBarInput, { target: { value: "s" } });
 
     const getSuggestions = sut.getByTestId("test-suggestions");
@@ -108,7 +108,7 @@ describe("Testing search bar basic functionalities", () => {
 
     const proceedButton = sut.getByTestId("test-proceed") as HTMLButtonElement;
     expect(proceedButton.disabled).toEqual(true);
-    expect(mockedStore.dispatch).toHaveBeenCalledTimes(1);
+    expect(mockedStore.dispatch).toHaveBeenCalledTimes(0);
     fireEvent.input(searchBarInput, { target: { value: "s" } });
 
     expect(proceedButton.disabled).toEqual(true);
@@ -139,6 +139,6 @@ describe("Testing search bar basic functionalities", () => {
 
     fireEvent.click(proceedButton);
 
-    expect(mockedStore.dispatch).toBeCalledTimes(2);
+    expect(mockedStore.dispatch).toBeCalledTimes(1);
   });
 });
