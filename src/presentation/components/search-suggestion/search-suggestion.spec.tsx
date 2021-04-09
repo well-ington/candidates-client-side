@@ -3,7 +3,7 @@ import React from "react";
 import { SearchSuggestion } from "./search-suggestion";
 import { cleanup, render, RenderResult } from "@testing-library/react";
 
-class searchSuggestionSpy {
+class SearchSuggestionSpy {
   value: string;
   constructor() {
     this.value = "";
@@ -19,9 +19,9 @@ const makeSut = (
   value: string = "cl"
 ): {
   sut: RenderResult;
-  spy: searchSuggestionSpy;
+  spy: SearchSuggestionSpy;
 } => {
-  const spy = new searchSuggestionSpy();
+  const spy = new SearchSuggestionSpy();
 
   const sut = render(
     <SearchSuggestion
