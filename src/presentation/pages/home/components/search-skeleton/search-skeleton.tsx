@@ -4,7 +4,7 @@ import styles from "./search-skeleton.scss";
 
 const SearchSkeleton: React.FC = () => {
   return (
-    <div className={styles.skeleton}>
+    <div data-testid="test-search-skeleton" className={styles.skeleton}>
       {"12345".split("").map((_, index) => (
         <div className={styles.skeletonItem} key={`skeleton-item-${index}`}></div>
       ))}
