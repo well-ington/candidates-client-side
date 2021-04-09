@@ -14,7 +14,7 @@ export const App: React.FC = () => {
     }
   };
   return (
-    <div className={styles.container}>
+    <div data-testid="app-wrapper" className={styles.container}>
       <div
         className={`${styles.searchWidget} ${
           firstQuery ? styles.homeSearchWidget : ""
