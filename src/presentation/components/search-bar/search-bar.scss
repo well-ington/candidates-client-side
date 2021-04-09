@@ -1,3 +1,5 @@
+@import "../../style/colors.scss";
+
 .container {
   padding: 8px;
 }
@@ -5,7 +7,7 @@
 .textInput {
   border-width: 1px;
   border-style: solid;
-  border-color: hsl(255, 10%, 30%);
+  border-color: $darkpurple;
   min-width: 80vw;
   padding-left: 8px;
   padding-right: 8px;
@@ -19,7 +21,7 @@
   transition: 128ms;
 
   &:focus {
-    border-color: hsl(255, 60%, 50%);
+    border-color: $purple;
   }
 }
 
@@ -37,7 +39,7 @@
 }
 
 .highlight {
-  color: hsl(255, 60%, 50%);
+  color: $purple;
   font-weight: bold;
 }
 

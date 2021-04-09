@@ -1,3 +1,5 @@
+@import "../../../../style/colors.scss";
+
 @keyframes slide-right {
   from {
     left: -150px;
@@ -20,7 +22,7 @@
 .skeletonItem {
   width: 60vw;
   height: 50px;
-  background-color: hsl(255, 10%, 60%);
+  background-color: $purple;
   margin: 4px;
   border-radius: 100px;
   position: relative;
@@ -36,7 +38,7 @@
     height: 40px;
     width: 150px;
     opacity: 0.4;
-    background: linear-gradient(to right, transparent 0%, hsl(255, 50%, 90%) 50%, transparent 100%);
+    background: linear-gradient(to right, transparent 0%, $purple 50%, transparent 100%);
     animation-name: slide-right;
     animation-duration: 1250ms;
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

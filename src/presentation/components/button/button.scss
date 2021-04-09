@@ -1,3 +1,5 @@
+@import "../../style/colors.scss";
+
 .button {
   padding-left: 8px;
   padding-right: 8px;
@@ -16,8 +18,8 @@
   border-style: solid;
   font-size: 1.4rem;
   border-radius: 50px;
-  border-color: hsl(255, 60%, 31%);  
-  background-color: hsl(255, 60%, 51%);
+  border-color: $darkpurple;  
+  background-color: $purple;
   margin-right: 5px;
   cursor: pointer;
   transition: 500ms;
@@ -32,8 +34,8 @@
 }
 
 .proceed {
-  border-color: hsl(105, 25%, 25%);
-  background-color: hsl(105, 48%, 55%);
+  border-color: $darkgreen;
+  background-color: $green;
   cursor: pointer;
   transition: 500ms;
   color: white;
@@ -41,12 +43,11 @@
   letter-spacing: 0.2rem;
   border: none;
   border-radius: 5rem;
+  transition: 250ms;
 
   & .active:hover {
-    background-color: hsl(115, 60%, 91%);
-    color: hsl(155, 60%, 31%);
+    background-color: $brightpurple;
   }
-
 }
 
 @media (max-width: 720px) {

@@ -1,7 +1,9 @@
+@import "../../../../style/colors.scss";
+
 .container {
   display: flex;
   flex-direction: column;
-  background-color: hsl(255, 50%, 95%);
+  background-color: $brightpurple;
   border-radius: 0.8rem;
   margin-bottom: 0.4rem;
 }
@@ -24,11 +26,11 @@
 .title {
   font-size: 1.4rem;
   font-weight: bold;
-  color: hsl(255, 20%, 20%);
+  color: $darkpurple;
 }
 
 .highlight {
-  color: hsl(255, 70%, 40%);
+  color: $purple;
   font-weight: bold;
   font-size: inherit;
 }
@@ -52,14 +54,14 @@
   padding-right: 0.6rem;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
-  background-color: hsl(105, 48%, 55%);
+  background-color: $green;
   color: white;
   align-self: center;
   font-size: 1.2rem;
 }
 
 .matchedItem {
-  background-color: hsl(255, 60%, 51%);
+  background-color: $purple;
 }
 
 .infoBlock {
