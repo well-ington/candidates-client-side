@@ -53,8 +53,8 @@ export const SearchSuggestion: React.FC<ISuggestion> = ({
       const flooredNumber = Math.floor(item);
       biggestNumber = Math.max(biggestNumber, item);
       if (flooredNumber !== item) {
-        const anotherNumber = item - flooredNumber;
-        if (anotherNumber == 0.5) {
+        const restOfSubtraction = item - flooredNumber;
+        if (restOfSubtraction === 0.5) {
           emptyArray.push(`de ${flooredNumber} a ${flooredNumber + 1} anos`);
         } else {
           emptyArray.push(`mais de ${Math.floor(item)} anos`);
