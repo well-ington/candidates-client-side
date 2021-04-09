@@ -1,6 +1,6 @@
-import { TqueryObject } from "@/data/store/reducer/store";
 import React from "react";
 import { connect } from "react-redux";
+import { TqueryObject } from "@/data/store/reducer/store";
 import { ErrorDisplay } from "./components/error-display/error-display";
 import ResultContainer from "./components/result-container/result-container";
 import SearchSkeleton from "./components/search-skeleton/search-skeleton";
@@ -20,7 +20,7 @@ const Home: React.FC<THome> = ({ results, loading, error }) => {
       {!loading && error.length === 0 && (
         <ResultContainer candidates={results.candidates} />
       )}
-      {error.length > 0 && !loading ? <ErrorDisplay message={error} /> : ""}
+      { error.length > 0 && !loading ? <ErrorDisplay message={error} /> : ""}
     </div>
   );
 };
