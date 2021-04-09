@@ -8,9 +8,7 @@ interface ISuggestion {
   testid?: string;
 }
 
-const filterQuery = (str: string) =>
-  str
-    .toLowerCase()
+const filterQuery = (str: string) => str.toLowerCase()
     .replace(/à|á|ã|â/g, "a")
     .replace(/è|ê|ê|é/g, "e")
     .replace(/(ì|í|î)/g, "i")
@@ -68,15 +66,18 @@ export const SearchSuggestion: React.FC<ISuggestion> = ({
 
     optionsArray = emptyArray;
     const twoNumbersRegex = new RegExp(/(\d+)(.+?)(\d+)/);
+    const simpleNumberRegex = new RegExp(/\D+(\d+).*/);
     let valueToCompare = [value];
     let isDualRegex = false;
 
-    if (twoNumbersRegex.test(value)) {
-      isDualRegex = true;
-      valueToCompare = [...value.replace(twoNumbersRegex, "$1 $3").split(" ")];
-    } else {
-      valueToCompare = [value.replace(/(\d+)/, "-$2-").split("-")[1]];
-    }
+    if(simpleNumberRegex.test(value)) {
+      if (twoNumbersRegex.test(value)) {
+        isDualRegex = true;
+        valueToCompare = [...value.replace(twoNumbersRegex, "$1 $3").split(" ")];
+      } else if(simpleNumberRegex.test(value)) {
+        valueToCompare = [value.replace(simpleNumberRegex, "$1")];
+      }
+    }    
 
     filteredItems = optionsArray.filter((item: string) => {
       if (isDualRegex) {
@@ -96,7 +97,7 @@ export const SearchSuggestion: React.FC<ISuggestion> = ({
     );
   }
 
-  if (selected > filteredItems.length - 1 || selected >= 8) {
+  if (selected > filteredItems.length - 1 || selected >= 8 || (!value.length && selected > -1)) {
     setSelected(-1);
   }
 
@@ -104,7 +105,8 @@ export const SearchSuggestion: React.FC<ISuggestion> = ({
     let lastTime = Date.now();
     const captureKeys = (e) => {
       const now = Date.now();
-      if (now - lastTime > 128) {
+      //only runs when value is not empty
+      if (now - lastTime > 128 && value.length) {
         switch (e.keyCode) {
           case 38:
             if (selected > 0) {
@@ -119,8 +121,9 @@ export const SearchSuggestion: React.FC<ISuggestion> = ({
             }
             break;
           case 13:
-            if (filteredItems[Number(selected)]) {
+            if (filteredItems[Number(selected)]) {                
               change(filteredItems[Number(selected)]);
+              setSelected(-1);
             }
             break;
         }
