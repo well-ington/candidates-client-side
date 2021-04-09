@@ -24,7 +24,7 @@ export const getServerSuggestions = () => {
                 returnedDispatchFunction(dispatch);
             }, 500);
         }
-    }
+    };
     return returnedDispatchFunction;
 }
 
