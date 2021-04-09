@@ -29,6 +29,26 @@ const CandidateDisplay: React.FC<TresultContainer> = ({
       ? "mais de " + Math.floor(Number(experience))
       : Math.floor(Number(experience)) + " anos";
 
+    const matchedTechs = [];
+
+    const mainTechs = [];
+
+    const filteredTechs = [];
+
+    tech.forEach((item: string) => {
+      if (matched.indexOf(item) !== -1) {
+        if(mainTech.indexOf(item) !== -1) {
+          mainTechs.push(item);
+        } else {
+          matchedTechs.push(item);
+        }
+      } else {
+        filteredTechs.push(item);
+      }
+    });   
+
+    const sortedTech = mainTech.concat(matchedTechs, filteredTechs);    
+
   return (
     <div className={styles.container}>
       <div className={styles.firstRow}>
@@ -41,10 +61,10 @@ const CandidateDisplay: React.FC<TresultContainer> = ({
           </p>
         </div>
         <div className={styles.techs}>
-          {tech.map((item, index) => (
+          {sortedTech.map((item, index) => (
             <p
               className={`${styles.techItem} ${
-                matched.indexOf(item) !== -1 ? styles.matchedItem : ""
+                matched.indexOf(item) !== -1 ? mainTech.indexOf(item) !== -1 ? styles.mainTechItem : styles.matchedItem : ""
               }`}
               key={`tech_item_${index}`}
             >

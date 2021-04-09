@@ -61,7 +61,13 @@
 }
 
 .matchedItem {
+  background-color: $brightpurple;
+  color: $darkpurple;
+}
+
+.mainTechItem {
   background-color: $purple;
+  font-weight: bold;
 }
 
 .infoBlock {
