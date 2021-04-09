@@ -13,7 +13,7 @@ const makeSUT: TmockType = (url = "http://localhost:5050", success = true, respo
     return {
         sut,
         spy
-    }
+    };
 }
 
 describe("Fetching information from server side", () => {
