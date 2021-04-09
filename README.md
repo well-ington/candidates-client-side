@@ -1,6 +1,14 @@
 # Geek Seeker client-side
 
-## Scripts
+## Inicializando
+
+Clone este diretório ao rodar ```git clone https://github.com/well-ington/candidates-client-side.git```, depois rode o comando no node ```npm i``` para instalar as dependências.
+
+Depois disso, vá até o arquivo ```src/data/store/actions/actions.ts``` e altere a URL do servidor para o servidor local de testes.
+
+Agora é só executar o ```npm run dev``` para abrir o web-app.
+
+### Scripts
 
 ### ```npm start```
 Esse script inicia o projeto no modo produção. Essencial para o funcionamento no heroku.
