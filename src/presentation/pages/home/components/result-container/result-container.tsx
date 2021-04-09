@@ -9,10 +9,10 @@ type TresultContainer = {
 
 const ResultContainer: React.FC<TresultContainer> = ({ candidates }) => {
   return (
-    <div className={styles.container}>
+    <div data-testid="test-result-container" className={styles.container}>
       {candidates.length > 0
-        ? candidates.map((candidate: TcandidateObject) => (
-            <CandidateDisplay candidate={candidate} card={false} />
+        ? candidates.map((candidate: TcandidateObject, index: number) => (
+            <CandidateDisplay key={`candidate-result-${index}`} candidate={candidate} card={false} />
           ))
         : ""}
     </div>
